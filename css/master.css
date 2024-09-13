@@ -1,5 +1,5 @@
 :root {
-  --main-color: #4682B4
+  --main-color: #a4c8e6
   ;
 }
 body {
@@ -30,8 +30,68 @@ body {
   padding: 8px;
 
 }
-.settings-box .settings-container {
-
+.settings-box .option-box{
+  padding: 20px;
+}
+.settings-box .option-box h4 {
+  margin: 0;
+  color: #FFF;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.settings-box .option-box .colors-list {
+  list-style: none;
+  text-align: center;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #FFF;
+}
+.settings-box .option-box .colors-list li {
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: .5;
+  display: inline-block;
+}
+.settings-box .option-box .colors-list li.active {
+  opacity: 1;
+  border: 1px solid #333;
+}
+.settings-box .option-box .colors-list li:first-child {
+  background-color: #a4c8e6;
+}
+.settings-box .option-box .colors-list li:nth-child(2) {
+  background-color: #70eb7b;
+}
+.settings-box .option-box .colors-list li:nth-child(3) {
+  background-color: #fc75ea;
+}
+.settings-box .option-box .colors-list li:nth-child(4) {
+  background-color: #6a3ada;
+}
+.settings-box .option-box .colors-list li:nth-child(5) {
+  background-color: #f7df1e;
+}
+.settings-box .random-background .yes,
+.settings-box .random-background .no {
+  width: 50px;
+  background-color: #a72b2b;
+  color: #FFF;
+  margin-top: 20px;
+  display: inline-block;
+  text-align: center;
+  padding: 7px 10px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: .5;
+}
+.settings-box .random-background span.active{
+  opacity: 1;
 }
 /* End Setting Box */
 /* Start Landing Page */
@@ -64,7 +124,7 @@ body {
   color: var(--main-color);
 }
 .header-area .logo span {
-  color: orange;
+  color: #f7df1e;
 }
 .header-area .links {
   list-style: none;
