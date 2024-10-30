@@ -1,133 +1,98 @@
-// check If There's Local Storage Option
+// Check If There's Local Storage Color Option
 let mainColors = localStorage.getItem("color_option");
 
 if (mainColors !== null) {
-
-  document.documentElement.style.setProperty('--main-color', localStorage.getItem("color_option"));
-
-      //Remove Active Class From All Colors List Item
-      document.querySelectorAll(".colors-list li").forEach(element => {
-
-        element.classList.remove("active");
-        
-              //Add Active Class On Element With Data-Color === Local Storage Item
-              if (element.dataset.color === mainColors) {
-
-                //Add Active Class
-                element.classList.add("active");
-
-              }
-
-      });
-
+  document.documentElement.style.setProperty('--main-color', mainColors);
+  document.querySelectorAll(".colors-list li").forEach(element => {
+    element.classList.remove("active");
+    if (element.dataset.color === mainColors) {
+      element.classList.add("active");
+    }
+  });
 }
 
-
-//Random Background Option
+// Random Background Option
 let backgroundOption = true;
-
-//Varible To Control The Backgrond Intrval
 let backgroundInterval;
 
+// Check If There's Local Storage Random Background Item
+let backgroundLocalItem = localStorage.getItem("background_option");
 
+if (backgroundLocalItem !== null) {
+  document.querySelectorAll(".random-background span").forEach(element => {
+    element.classList.remove("active");
+  });
 
-// Toggle Setting Box Open
-document.querySelector(".fa-gear").onclick = () => {
-
-  document.querySelector(".settings-box").classList.toggle("open");
-
+  if (backgroundLocalItem === 'true') {
+    backgroundOption = true;
+    document.querySelector(".random-background .yes").classList.add("active");
+  } else {
+    backgroundOption = false;
+    document.querySelector(".random-background .no").classList.add("active");
+  }
 }
 
-//Switch Colors
+// Click On Toggle Settings Gear
+document.querySelector(".fa-gear").onclick = function () {
+  this.classList.toggle("fa-spin");
+  document.querySelector(".settings-box").classList.toggle("open");
+};
+
+// Switch Colors
 const colorLi = document.querySelectorAll(".colors-list li");
 
-//Loop On All List Items
 colorLi.forEach(li => {
-
-  //Click On Every List Items 
   li.addEventListener("click", (e) => {
-
-    //Set color On Root
     document.documentElement.style.setProperty('--main-color', e.target.dataset.color);
-
-    //Set Color On Local Storage
-    localStorage.setItem("color_option", e.target.dataset.color); 
-
-    //Remove Active Class From All Childeans
-    e.target.parentElement.querySelectorAll(".active").forEach(element => {
-
-      element.classList.remove("active");
-
-    });
-
-    //Add Active Class On Self
-    e.target.classList.add("active");
-
+    localStorage.setItem("color_option", e.target.dataset.color);
+    handleActive(e);
   });
-
 });
 
-//Switch Random Background Option
+// Switch Random Background Option
 const randomBackEl = document.querySelectorAll(".random-background span");
 
-//Loop On All Spans
 randomBackEl.forEach(span => {
-
-  //Click On Every Span
-
   span.addEventListener("click", (e) => {
-
-    //Remove Active Class From All Childeans
-    e.target.parentElement.querySelectorAll(".active").forEach(element => {
-
-      element.classList.remove("active");
-
-    });
-
-    //Add Active Class On Self
-    e.target.classList.add("active");
+    handleActive(e);
 
     if (e.target.dataset.background === 'yes') {
-
       backgroundOption = true;
-
-      randomizeTmages();
-
+      randomizeImages();
+      localStorage.setItem("background_option", true);
     } else {
-
       backgroundOption = false;
-
       clearInterval(backgroundInterval);
-
+      localStorage.setItem("background_option", false);
     }
-
   });
-
 });
 
-
-//Select Landing Page Element
+// Select Landing Page Element
 let landingPage = document.querySelector(".landing-page");
 
-//Get Array Of Images
-let imagesArray = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg",];
+// Get Array Of Images
+let imagesArray = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
 
-randomizeTmages = () => {
-
-  if (backgroundOption === true){
-
-    backgroundInterval = setInterval (() => {
-
-      //Get Random Number
-      let randomNumber = Math.floor(Math.random() * imagesArray.length)
-
-      //Change Background Images Url
-      landingPage.style.background = 'url("images/' + imagesArray[randomNumber] + '")'
-
-    }, 3000);
-    
+// Function To Randomize Images
+function randomizeImages() {
+  if (backgroundOption) {
+    backgroundInterval = setInterval(() => {
+      let randomNumber = Math.floor(Math.random() * imagesArray.length);
+      landingPage.style.backgroundImage = 'url("images/' + imagesArray[randomNumber] + '")';
+    }, 3000); // 10-second interval
   }
-
 }
 
-//commit
+// Helper Function To Manage Active Class
+function handleActive(event) {
+  event.target.parentElement.querySelectorAll(".active").forEach(element => {
+    element.classList.remove("active");
+  });
+  event.target.classList.add("active");
+}
+
+// Call randomizeImages on page load if backgroundOption is true
+if (backgroundOption) {
+  randomizeImages();
+}
