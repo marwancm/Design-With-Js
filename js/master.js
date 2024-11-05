@@ -96,3 +96,40 @@ function handleActive(event) {
 if (backgroundOption) {
   randomizeImages();
 }
+
+// Start progress
+let ourSkills = document.querySelector(".skills");
+let progressSpans = document.querySelectorAll("skill-progress span");
+
+window.onscroll = function () {
+  if (window.scrollY >= ourSkills.offsetTop - 200) {
+    allSkills = document.querySelectorAll(".skill-box .skill-progress span")
+    allSkills.forEach(skill => {
+      skill.style.width= skill.dataset.progress;
+    });
+  }
+};
+
+// Start Gallery
+let ourGallery = document.querySelectorAll(".gallery .images-box img");
+
+
+ourGallery.forEach(img => {
+
+  img.addEventListener('click', (e) =>{
+
+    let overlay = document.createElement("div");
+    overlay.className = 'popup-overlay';
+    document.body.appendChild(overlay);
+
+    popupBox = document.createElement("div");
+    popupBox.className = 'popup-box';
+
+    let popupImg = document.createElement("img");
+    popupImg.src = img.src;
+
+    popupBox.appendChild(popupImg);
+    document.body.appendChild(popupBox);
+  });
+
+});
