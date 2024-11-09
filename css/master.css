@@ -370,10 +370,60 @@ ul {
   padding: 20px;
   z-index: 1001;
 }
+.popup-box h3 {
+  font-weight: bold;
+  color: var(--main-color);
+  text-align: center;
+  margin: 0 0 20px;
+}
 .popup-box img {
   max-width: 100%;
 }
+.popup-box .close-button {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: var(--main-color);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Arial, Tahoma;
+  cursor: pointer;
+}
 /* End gallery */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Start Animation */

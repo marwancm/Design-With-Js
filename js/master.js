@@ -116,20 +116,79 @@ let ourGallery = document.querySelectorAll(".gallery .images-box img");
 
 ourGallery.forEach(img => {
 
-  img.addEventListener('click', (e) =>{
+  img.addEventListener('click', (e) => {
 
+    //Create overlay div
     let overlay = document.createElement("div");
+
+    //Add class to overlay
     overlay.className = 'popup-overlay';
+    
+    //Append overlay to the body
     document.body.appendChild(overlay);
 
+    //Create popupBox
     popupBox = document.createElement("div");
+    //Add class to popupBox
     popupBox.className = 'popup-box';
 
+    if(img.alt !== null){
+
+      //Create Heading
+      let imgHeading = document.createElement("h3");
+
+      //Create text for heading
+      let imgText = document.createTextNode(img.alt);
+
+      //Append imgText to heading
+      imgHeading.appendChild(imgText);
+
+      //Append imgHeading
+      popupBox.appendChild(imgHeading);
+    }
+    
+    //Create element image
     let popupImg = document.createElement("img");
+
+    //Set image source
     popupImg.src = img.src;
 
+    //Appen element image to popupBox
     popupBox.appendChild(popupImg);
+
+    //Append popupBox to the body
     document.body.appendChild(popupBox);
+
+    //Create The close span
+    let closeButton = document.createElement("span");
+
+    //Create textButton
+    let closeButtonText = document.createTextNode("X");
+
+    //Append textButton to span
+    closeButton.appendChild(closeButtonText);
+
+    //Add class to closeButton
+    closeButton.className = 'close-button';
+
+    //Append closeButton to popupBox
+    popupBox.appendChild(closeButton);
+
   });
+
+});
+
+//close popup
+document.addEventListener('click', (e) => {
+
+  if(e.target.className == 'close-button') {
+
+    //Remove the current popup
+    e.target.parentNode.remove();
+
+    //Remove overlay
+    document.querySelector(".popup-overlay").remove();
+
+  }
 
 });
