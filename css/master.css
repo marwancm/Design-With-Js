@@ -301,9 +301,9 @@ ul {
 /* End about us */
 /* Stert skills */
 .skills {
-  background-color: var(--sectione-background);
   padding-top: var(--main-paddind-top);
   padding-bottom: var(--main-paddind-bottom);
+  background-color: var(--sectione-background);
 }
 .skills .skill-box {
   background-color: #FFF;
@@ -339,6 +339,9 @@ ul {
 .gallery {
   padding-top: var(--main-paddind-top);
   padding-bottom: var(--main-paddind-bottom);
+}
+.gallery .main-heading {
+  margin: 0 auto 50px;
 }
 .gallery .images-box {
   text-align: center;
@@ -396,9 +399,118 @@ ul {
   cursor: pointer;
 }
 /* End gallery */
-
-
-
+/* Start timeline */
+.timeline {
+  padding-top: var(--main-paddind-top);
+  padding-bottom: var(--main-paddind-bottom);
+  background-color: var(--sectione-background);
+}
+.timeline .timeline-content {
+  position: relative;
+  overflow: hidden;
+}
+.timeline .timeline-content::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background-color: var(--main-color);
+  top: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+.timeline .timeline-content .year {
+  width: 50px;
+  background-color: var(--main-color);
+  color: #FFF;
+  padding: 2px 5px;
+  text-align: center;
+  border: 4px;
+  margin: 20px auto;
+  position: relative;
+  z-index: 2;
+  font-weight: bold;
+}
+.timeline .timeline-content .left,
+.timeline .timeline-content .right{
+  position: relative;
+  width: calc(50% - 25px);
+  margin-bottom: 40px;
+}
+.timeline .timeline-content .left {
+  float: left;
+}
+.timeline .timeline-content .left::before {
+  right: -35px;
+}
+.timeline .timeline-content .right {
+  float: right;
+}
+.timeline .timeline-content .right::before {
+  left: -35px;
+}
+.timeline .timeline-content .left::before,
+.timeline .timeline-content .right::before{
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: #FFF;
+  border: 3px solid var(--main-color);
+  border-radius: 50px;
+  z-index: 1;
+  top: 20px;
+}
+.timeline .timeline-content .content {
+  background-color: #FFF;
+  padding: 20px;
+  position: relative;
+}
+.timeline .timeline-content .left .content::before {
+  content: "";
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  right: -20px;
+  top: 20px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent transparent transparent rgb(255, 255, 255);
+}
+.timeline .timeline-content .right .content::before {
+  content: "";
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  left: -20px;
+  top: 20px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent rgb(255, 255, 255) transparent transparent;
+}
+.timeline .timeline-content .content h3 {
+  font-weight: bold;
+  margin: 0 0 10px;
+  color: var(--main-color);
+}
+.timeline .timeline-content .content p {
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+.clearfix{
+  clear: both;
+}
+/* End timeline */
+/* Start Footer */
+footer {
+  padding-top: var(--main-paddind-top);
+  padding-bottom: var(--main-paddind-bottom);
+  background-color: #191919;
+  color: #FFF;
+  text-align: center;
+}
+/* End Footer */
 
 
 
